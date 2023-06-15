@@ -1,0 +1,209 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "notify": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/notify",
+      "sourceRoot": "projects/notify/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/notify",
+            "index": "projects/notify/src/index.html",
+            "main": "projects/notify/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/notify/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/notify/src/favicon.ico",
+              "projects/notify/src/assets"
+            ],
+            "styles": [
+              "projects/notify/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "projects/notify/src/environments/environment.ts",
+                  "with": "projects/notify/src/environments/environment.development.ts"
+                }
+              ]
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "notify:build:production"
+            },
+            "development": {
+              "browserTarget": "notify:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "notify:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/notify/tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/notify/src/favicon.ico",
+              "projects/notify/src/assets"
+            ],
+            "styles": [
+              "projects/notify/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "http-service-library": {
+      "projectType": "library",
+      "root": "projects/http-service-library",
+      "sourceRoot": "projects/http-service-library/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/http-service-library/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/http-service-library/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/http-service-library/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/http-service-library/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "web-socket-service-library": {
+      "projectType": "library",
+      "root": "projects/web-socket-service-library",
+      "sourceRoot": "projects/web-socket-service-library/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/web-socket-service-library/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/web-socket-service-library/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/web-socket-service-library/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/web-socket-service-library/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "localization-service-library": {
+      "projectType": "library",
+      "root": "projects/localization-service-library",
+      "sourceRoot": "projects/localization-service-library/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/localization-service-library/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/localization-service-library/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/localization-service-library/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/localization-service-library/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
